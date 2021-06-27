@@ -1,5 +1,6 @@
 # Boot2Root
 
+## Ip
 <pre>
 $> sudo arp
 Address                  HWtype  HWaddress           Flags Mask            Iface
@@ -14,6 +15,7 @@ PING BornToSecHackMe (192.168.1.96) 56(84) bytes of data.
 64 bytes from BornToSecHackMe (192.168.1.96): icmp_seq=1 ttl=64 time=0.826 ms
 </pre>
 
+## SSH
 <pre>
 $> nmap -A 192.168.1.96
 Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-27 01:11 CEST
@@ -55,6 +57,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 27.42 seconds
 </pre>
 
+## Html
 <pre>
 gobuster dir -u http://192.168.1.96/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -t 25 -x html
 ===============================================================
@@ -76,3 +79,9 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 /forum                (Status: 403) [Size: 285] 
 /fonts                (Status: 301) [Size: 312] [--> http://192.168.1.96/fonts/]
 </pre>
+
+## User
+- dans [un post](https://192.168.1.96/forum/index.php?id=6) du forum on a les logs du ssh avec les username des gens connecté
+  - root
+  - admin
+  - lmezard
