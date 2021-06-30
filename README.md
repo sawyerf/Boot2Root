@@ -15,7 +15,7 @@ PING BornToSecHackMe (192.168.1.96) 56(84) bytes of data.
 64 bytes from BornToSecHackMe (192.168.1.96): icmp_seq=1 ttl=64 time=0.826 ms
 </pre>
 
-## SSH
+## nmap
 <pre>
 $> nmap -A 192.168.1.96
 Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-27 01:11 CEST
@@ -58,26 +58,18 @@ Nmap done: 1 IP address (1 host up) scanned in 27.42 seconds
 </pre>
 
 ## Html
+- `gobuster dir -u http://192.168.1.96/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -t 25 -x html`
 <pre>
-gobuster dir -u http://192.168.1.96/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -t 25 -x html
-===============================================================
-Gobuster v3.1.0
-by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
-===============================================================
-[+] Url:                     http://192.168.1.96/
-[+] Method:                  GET
-[+] Threads:                 25
-[+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt
-[+] Negative Status codes:   404
-[+] User Agent:              gobuster/3.1.0
-[+] Extensions:              html
-[+] Timeout:                 10s
-===============================================================
-2021/06/27 02:43:44 Starting gobuster in directory enumeration mode
-===============================================================
 /index.html           (Status: 200) [Size: 1025]
 /forum                (Status: 403) [Size: 285] 
 /fonts                (Status: 301) [Size: 312] [--> http://192.168.1.96/fonts/]
+</pre>
+
+- `gobuster dir -u https://192.168.1.96/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -t 25 -k`
+<pre>
+/forum                (Status: 301) [Size: 314] [--> https://192.168.1.96/forum/]
+/webmail              (Status: 301) [Size: 316] [--> https://192.168.1.96/webmail/]
+/phpmyadmin           (Status: 301) [Size: 319] [--> https://192.168.1.96/phpmyadmin/]
 </pre>
 
 ## User

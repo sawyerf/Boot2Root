@@ -7,7 +7,7 @@
 </pre>
 - Je me connecte avec les login `lmezard` et `!q\]Ej?*5K5cy*AJ`
 - le mail est disponible dans les parametres de l'user
-- Je me connecte au server imap avec le mail et le meme mot de passe et l'application evolution
+- Je me connecte au server imap avec `lmezard@borntosec.net` et `!q\]Ej?*5K5cy*AJ` avec evolution ou sur le site [webmail](https://borntosec.net/webmail/)
 - Un mail est disponible
 <pre>
 Hey Laurie,
@@ -16,3 +16,5 @@ You cant connect to the databases now. Use <strong>root/Fg-'kKXBj87E:aJ$</strong
 
 Best regards.
 </pre>
+- On peut donc se connecter sur le [PhpMyAdmin](https://192.168.1.96/phpmyadmin/).
+- En changant le password de admin par celui de lmezard on peut se connecter en tant qu'admin sur le forum
