@@ -105,3 +105,16 @@ Phase 1 defused. How about the next one?
 gdb-peda$ x $eax
 0x2:    Cannot access memory at address </pre0x2
 </pre>
+
+# Phase 3 
+- Dans binary ninja on voit qu'il y a trois argument "%d %c %d"
+- Dans le code il suffit de lire les condition
+- Le premier chiffre determine les deux argument d'apres dans les case
+- Pour 0
+```
+case 0
+		ebx.b = 0x71 // le char
+		if (var_8 !=  0x309) // le int de fin
+				explode_bomb()
+				noreturn;
+```
