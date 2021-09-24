@@ -41,3 +41,47 @@ README
 <pre>
 cat * | grep -v Haha | grep -v useless | grep -v '^$'
 </pre>
+
+- Nous avons crée un script python qui recupere tout les fichiers et les mets dans l'ordre.
+
+```
+$> python fun.py "../Ressources/ft_fun" > fun.c
+$> gcc fun.c 
+$> ./a.out 
+MY PASSWORD IS: Iheartpwnage
+Now SHA-256 it and submit% 
+```
+
+- Avec le contenu du fichier qui se trouvais dans le serveur ftp nous utilison laurie en login et
+ en mot de passe. Nous somme maintenant sur la machine connecté en tant que l'utilisateur **laurie** et 
+**330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4** en mot de passe. Nous somme maintenant sur la machine connecté en tant que l'utilisateur laurie.
+
+```
+ssh laurie@192.168.1.97
+```
+
+- Un fichier README se trouve dans le home de laurie: 
+
+```
+Diffuse this bomb!
+When you have all the password use it as "thor" user with ssh.
+
+HINT:
+P
+ 2
+ b
+
+o
+4
+
+NO SPACE IN THE PASSWORD (password is case sensitive).
+```
+
+- Un fichier bomb est aussi present.
+
+Nous le decompilons avec binary ninja.
+
+### Phase 1:
+Nous pouvons reporté la string depuis binary ninja: `Public speaking is very easy.`
+
+### Phase 2:
