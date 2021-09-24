@@ -1,6 +1,6 @@
 # WriteUp1
 
-- Je recupere les [logs du ssh](https://192.168.1.96/forum/index.php?id=6) dans le forum 
+- Je recupere les [logs du ssh](https://192.168.1.96/forum/index.php?id=6) sur le forum 
 - `python3 ssh_parse.py`
 <pre>
 {'test', 'support', 'naos', 'lmezard', 'guest', 'nagios', 'ubnt', 'root', <strong>'!q\\]Ej?*5K5cy*AJ'</strong>, 'ftpuser', 'PlcmSpIp', 'adm', 'user', 'adam', 'nvdb', 'admin', 'pi'}
@@ -32,3 +32,7 @@ lmezard:G!@M6f4Eatau{sF"
 - On peut se connecter au FTP grace a ces login
 - On recupere les fichiers
 - On remarque que le fichier fun est une archive de plusieurs fichiers donc on le decompresse avec `tar -xf fun`
+
+
+README
+- Complete this little challenge and use the result as password for user 'laurie' to login in ssh
