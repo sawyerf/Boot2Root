@@ -36,3 +36,8 @@ lmezard:G!@M6f4Eatau{sF"
 
 README
 - Complete this little challenge and use the result as password for user 'laurie' to login in ssh
+
+
+<pre>
+cat * | grep -v Haha | grep -v useless | grep -v '^$'
+</pre>
