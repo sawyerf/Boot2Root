@@ -118,3 +118,36 @@ case 0
 				explode_bomb()
 				noreturn;
 ```
+# Phase 4
+- LE SCRIPTTTT !
+# Phase 5
+- On set un breakpoint au call de la fonction strings_not_equal et de regarder la correscpondance de chaque lettre avec l'autre
+<pre>
+gdb-peda$ disass phase_5
+Dump of assembler code for function phase_5:
+   0x08048d7a <+78>:    push   eax
+   0x08048d7b <+79>:    call   0x8049030 <strings_not_equal>
+   0x08048d80 <+84>:    add    esp,0x10
+gdb-peda$ b *0x08048d7b
+Breakpoint 1 at 0x8048d7b
+gdb-peda$ r bite
+Starting program: /home/alarm/Boot2Root/scripts/bomb bite
+Welcome this is my little bomb !!!! You have 6 stages with
+only one life good luck !! Have a nice day!
+Phase 1 defused. How about the next one?
+That's number 2.  Keep going!
+Halfway there!
+So you got that one.  Try this one.
+[----------------------------------registers-----------------------------------]
+EAX: 0xffffd590 ("srveaw")
+EBX: 0x804b7c0 ("abcdef")
+ECX: 0xffffd590 ("srveaw")
+[-------------------------------------code-------------------------------------]
+Legend: code, data, rodata, value
+
+Breakpoint 1, 0x08048d7b in phase_5 ()
+</pre>
+- Se qui donne
+| g | i | a | n | t | s |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| o | p | e | k | m | q |
