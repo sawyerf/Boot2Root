@@ -103,10 +103,10 @@ Public speaking is very easy.
 Phase 1 defused. How about the next one?
 1 15 15 15 15 15
 gdb-peda$ x $eax
-0x2:    Cannot access memory at address </pre0x2
+0x2:    Cannot access memory at address 0x2
 </pre>
 
-# Phase 3 
+### Phase 3 
 - Dans binary ninja on voit qu'il y a trois argument "%d %c %d"
 - Dans le code il suffit de lire les condition
 - Le premier chiffre determine les deux argument d'apres dans les case
@@ -118,9 +118,11 @@ case 0
 				explode_bomb()
 				noreturn;
 ```
-# Phase 4
+
+### Phase 4
 - LE SCRIPTTTT !
-# Phase 5
+
+### Phase 5
 - On set un breakpoint au call de la fonction strings_not_equal et de regarder la correscpondance de chaque lettre avec l'autre
 <pre>
 gdb-peda$ disass phase_5
