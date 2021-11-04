@@ -171,3 +171,17 @@ Breakpoint 1, 0x08048d7b in phase_5 ()
 - Quand on regarde la string qui est sscanf elle est egale a "9"
 - On comprend donc que c'est la string de phase 4 qui est analysé on rajoute donc " austinpowers" a la fin
 
+### Password
+- Le tout donne:
+```
+Public speaking is very easy.
+1 2 6 24 120 720
+1 b 214
+9
+opekmq
+4 2 6 3 1 5
+```
+- Se qui donne en inversant les dernier caracteres:
+```
+Publicspeakingisveryeasy.126241207201b2149opekmq426135
+```
