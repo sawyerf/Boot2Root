@@ -150,6 +150,24 @@ Legend: code, data, rodata, value
 Breakpoint 1, 0x08048d7b in phase_5 ()
 </pre>
 - Se qui donne
+
 | g | i | a | n | t | s |
 |:-:|:-:|:-:|:-:|:-:|:-:|
 | o | p | e | k | m | q |
+
+### Phase 6
+- On sait grace au code qu'il ne faut que:
+  - Les chiffres ne soit pas en double
+  - Les chiffre doivent etre entre 0 et 6
+  - que le premier est egale a 4
+- avec ces informations on a testé crée un script qui teste les 775 possibilités
+- se qui donne
+```
+4 2 6 3 1 5
+```
+
+### Secret Phase
+- On peut rentrer dans la secret a condition qu'une string soit egale a "austinpowers"
+- Quand on regarde la string qui est sscanf elle est egale a "9"
+- On comprend donc que c'est la string de phase 4 qui est analysé on rajoute donc " austinpowers" a la fin
+
