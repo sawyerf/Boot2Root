@@ -1,0 +1,1592 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+   <head>
+      <title>JavaScript Turtle Graphics</title>
+      <link type="text/css" rel="stylesheet" href="turtle.css" />
+      <meta charset="utf-8">
+   </head>
+   <body>
+      <div id="wrap">
+         <div id="midcolumn">
+            <h4>Canvas <span id="coords"></span></h4>
+            <canvas id="turtlecanvas" width="1500" height="1500"></canvas>
+            <canvas id="imagecanvas" width="1500" height="1500" style="display:none"></canvas>
+            <span id="message" class="message-hide">Coordinates has been copied to clipboard</span>
+         </div> <!-- midcolumn -->
+      </div> <!-- wrap-->
+      <script type="text/javascript" src="library.js"></script>
+   </body>
+</html>
+<script>
+setSpeed(30)
+const turtle_file = `Tourne gauche de 90 degrees
+          Avance 50 spaces
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 50 spaces
+          Avance 210 spaces
+          Recule 210 spaces
+          Tourne droite de 90 degrees
+          Avance 120 spaces
+          Tourne droite de 10 degrees
+          Avance 200 spaces
+          Tourne droite de 150 degrees
+          Avance 200 spaces
+          Recule 100 spaces
+          Tourne droite de 120 degrees
+          Avance 50 spaces
+          Tourne gauche de 90 degrees
+          Avance 50 spaces
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne gauche de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 1 spaces
+          Tourne droite de 1 degrees
+          Avance 50 spaces
+          Avance 100 spaces
+          Recule 200 spaces
+          Avance 100 spaces
+          Tourne droite de 90 degrees
+          Avance 100 spaces
+          Tourne droite de 90 degrees
+          Avance 100 spaces
+          Recule 200 spaces`
+let turtle_lines = turtle_file.split('\n');
+turtle_lines.forEach(turtle_line => {
+  pendown()
+  let number = turtle_line.match(/\d+/)[0]
+
+  if (turtle_line.includes("droite")) {
+    right(number)
+  } else if (turtle_line.includes("gauche")) {
+    left(number)
+  } else if (turtle_line.includes("Avance")) {
+    forward(number) 
+  } else if (turtle_line.includes("Recule")) {
+    right(180)
+    forward(number)
+    right(180)
+  }
+});
+</script>
+<style>
+  body,
+html {
+   margin:0;
+   padding:0;
+}
+
+body h1 {
+   text-align:center;
+   margin: 9px;
+}
+
+#wrap {
+   width:1400px;
+   margin:0 auto;
+}
+
+#leftcolumn {
+   float:left;
+   width:30%;
+}
+
+#midcolumn {
+   float:left;
+   width:50%;
+}
+
+#rightcolumn {
+   float:right;
+   width:35%;
+}
+
+#turtlecanvas {
+   background:#fff;
+   border: 1px solid red;
+}
+
+#definitions {
+   width:300px;
+}
+
+#command {
+   width:300px;
+}
+
+#coords{
+   float:right;
+}
+
+.colours{
+   padding:5px;
+   width:150px;
+   text-align: center;
+}
+
+
+#turtlecanvas, #imagecanvas{
+    display:block;
+}
+ 
+.message-hide{
+    display: none;
+}
+
+.message-show{
+    height: 12px;
+    color:red;
+    float: right;
+    font-size: 12px;
+}
+
+.doc-link{
+    background: rgb(34, 153, 84);
+    color: white;
+    padding: 5px;
+    font-size: 1.2em;
+    text-decoration: none;
+    box-shadow: 2px 2px 2px grey;
+    margin: 10px 0;
+    display: inline-block;
+    /* text-transform: uppercase; */
+    font-weight: bold;
+}
+
+.doc-link:hover{
+    background: rgb(81, 219, 139);
+}
+</style>

