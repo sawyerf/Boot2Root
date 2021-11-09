@@ -51,11 +51,10 @@ lmezard:G!@M6f4Eatau{sF"
 - On peut se connecter au FTP grace a ces login
 - On recupere les fichiers
 - On remarque que le fichier fun est une archive de plusieurs fichiers donc on le decompresse avec `tar -xf fun`
-
-
-README
-- Complete this little challenge and use the result as password for user 'laurie' to login in ssh
-
+- README:
+```
+Complete this little challenge and use the result as password for user 'laurie' to login in ssh
+```
 
 <pre>
 cat * | grep -v Haha | grep -v useless | grep -v '^$'
