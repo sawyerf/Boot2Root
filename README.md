@@ -1,19 +1,13 @@
 # Boot2Root
 
-## Ip
-<pre>
-$> sudo arp
-Address                  HWtype  HWaddress           Flags Mask            Iface
-bbox.lan                 ether   ac:84:c9:6c:f6:dc   C                     eth0
-Tornado                  ether   74:29:af:33:25:19   C                     eth0
-Bbox-TV-001              ether   a8:d3:f7:ff:a5:f2   C                     eth0
-BornToSecHackMe          ether   08:00:27:ba:e4:36   C                     eth0
-iPhone                   ether   6e:21:b8:7b:18:7a   C                     eth0
-192.168.1.91             ether   b8:27:eb:db:44:24   C                     eth0
-$> ping BornToSecHackMe
-PING BornToSecHackMe (192.168.1.96) 56(84) bytes of data.
-64 bytes from BornToSecHackMe (192.168.1.96): icmp_seq=1 ttl=64 time=0.826 ms
-</pre>
+## Service
+| Service | port | Version |
+| FTP     | 21   | 2.0.8   |
+| SSH     | 22   | 5.9p1   |
+| HTTP    | 80   | 2.2.22  |
+| IMAP    | 143  | -       |
+| HTTPS   | 443  | 2.2.22  |
+| IMAPS   | 993  | -       |
 
 ## nmap
 <pre>
@@ -71,9 +65,3 @@ Nmap done: 1 IP address (1 host up) scanned in 27.42 seconds
 /webmail              (Status: 301) [Size: 316] [--> https://192.168.1.96/webmail/]
 /phpmyadmin           (Status: 301) [Size: 319] [--> https://192.168.1.96/phpmyadmin/]
 </pre>
-
-## User
-- dans [un post](https://192.168.1.96/forum/index.php?id=6) du forum on a les logs du ssh avec les username des gens connecté
-  - root
-  - admin
-  - lmezard
