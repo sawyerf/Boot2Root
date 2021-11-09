@@ -2,6 +2,7 @@
 
 ## Service
 | Service | port | Version |
+|---------|------|---------|
 | FTP     | 21   | 2.0.8   |
 | SSH     | 22   | 5.9p1   |
 | HTTP    | 80   | 2.2.22  |
