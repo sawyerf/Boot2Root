@@ -1,18 +1,15 @@
-https://www.cs.toronto.edu/~arnold/427/18s/427_18S/indepth/dirty-cow/index.html#what-is-cow
-https://www.youtube.com/watch?v=kEsshExn7aE
-https://github.com/FireFart/dirtycow/blob/master/dirty.c
+# Dirty Cow 
 
+- Cette faille disponible sur les linux version 2.6.22 (2007) à 4.8.3 (2016) permet d'ecrire sur des fichiers accessible uniquement en lecture seule
+- On regarde par regarder la version du linux pour savoir si l'exploit est utilisable
 ```
-$> lsb_release -a
-
-No LSB modules are available.
-Distributor ID:	Ubuntu
-Description:	Ubuntu 12.04.5 LTS
-Release:	12.04
-Codename:	precise
-
 $> uname -r
 
 3.2.0-91-generic-pae
-
 ```
+- L'exploit est donc compatible avec notre version de linux
+
+## Source
+- [Explication](https://www.cs.toronto.edu/~arnold/427/18s/427_18S/indepth/dirty-cow/index.html#what-is-cow)
+- [Excplication Youtube](https://www.youtube.com/watch?v=kEsshExn7aE)
+- [Script](https://github.com/FireFart/dirtycow/blob/master/dirty.c)
