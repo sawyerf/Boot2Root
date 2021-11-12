@@ -50,17 +50,17 @@ lmezard:G!@M6f4Eatau{sF"
 ## Lmezard FTP
 - On peut se connecter au FTP grace a ces login
 - On recupere les fichiers
-- On remarque que le fichier fun est une archive de plusieurs fichiers donc on le decompresse avec `tar -xf fun`
 - README:
 ```
 Complete this little challenge and use the result as password for user 'laurie' to login in ssh
 ```
-
-<pre>
-cat * | grep -v Haha | grep -v useless | grep -v '^$'
-</pre>
-
-- Nous avons crée un script python qui recupere tout les fichiers et les mets dans l'ordre.
+- On remarque que le fichier fun est une archive de plusieurs fichiers donc on le decompresse avec `tar -xf fun`
+```
+$> file fun 
+fun: POSIX tar archive (GNU)
+```
+- On remarque que le contenu des fichiers est un code en C en plusieurs partie
+- Nous avons donc créé un script python qui recupére tout les fichiers et les mets dans l'ordre.
 
 ```
 $> python fun.py "../Ressources/ft_fun" > fun.c
@@ -70,17 +70,15 @@ MY PASSWORD IS: Iheartpwnage
 Now SHA-256 it and submit% 
 ```
 
-- Avec le contenu du fichier qui se trouvais dans le serveur ftp nous utilison laurie en login et
- en mot de passe. Nous somme maintenant sur la machine connecté en tant que l'utilisateur **laurie** et 
-**330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4** en mot de passe. Nous somme maintenant sur la machine connecté en tant que l'utilisateur laurie.
+- On se connecte maintenant en SSH avec laurie en login et **330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4** en mot de passe.
 
 ```
 ssh laurie@192.168.1.97
 ```
 
 ## Laurie
-- Un fichier README se trouve dans le home de laurie: 
 
+- Un fichier README se trouve dans le home de laurie: 
 ```
 Diffuse this bomb!
 When you have all the password use it as "thor" user with ssh.
@@ -95,10 +93,8 @@ o
 
 NO SPACE IN THE PASSWORD (password is case sensitive).
 ```
-
 - Un fichier bomb est aussi present.
-
-- Nous le decompilons avec binary ninja.
+- Nous le decompilons avec binary ninja et commencons a le resoudre
 
 ### Phase 1:
 - Nous pouvons reporté la string depuis binary ninja: `Public speaking is very easy.`
@@ -210,7 +206,7 @@ Publicspeakingisveryeasy.126241207201b2149opekmq426135
 646da671ca01bb5d84dbb5fb2238dc8e
 ```
 
-## Pour etre root
+## Zaz & Root
 - On voit qu'il y a un strcpy de argv[1] donc on peut l'overflow
 ```
 $> ltrace ./exploit_me testt
