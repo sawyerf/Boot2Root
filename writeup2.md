@@ -1,6 +1,7 @@
 # Dirty Cow 
 
 - Cette faille disponible sur les linux version 2.6.22 (2007) à 4.8.3 (2016) permet d'ecrire sur des fichiers accessible uniquement en lecture seule
+- On se connecte donc a **laurie**:**330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4** en ssh
 - On regarde par regarder la version du linux pour savoir si l'exploit est utilisable
 ```
 $> uname -r
