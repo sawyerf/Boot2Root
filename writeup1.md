@@ -4,7 +4,7 @@
 | Service    | User                 | Passwd                                                             |
 |------------|----------------------|--------------------------------------------------------------------|
 | serv       | user                 | `pass`                                                             | 
-| Forum      | laurie               | `!q\]Ej?*5K5cy*AJ`                                                 | 
+| Forum      | lmezard              | `!q\]Ej?*5K5cy*AJ`                                                 | 
 | Mail       | laurie@borntosec.net | `!q\]Ej?*5K5cy*AJ`                                                 | 
 | PhpMyAdmin | root                 | `Fg-'kKXBj87E:aJ$`                                                 | 
 | FTP        | lmezard              | `G!@M6f4Eatau{sF"`                                                 | 
