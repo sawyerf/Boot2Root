@@ -114,8 +114,8 @@ NO SPACE IN THE PASSWORD (password is case sensitive).
 - Nous le decompilons avec binary ninja et commencons à le resoudre
 
 ### Phase 1:
-- Depuis binary ninja, nous voyons qu'une string est comparer: `Public speaking is very easy.`
-- Il suffit de l'entre dans le programme
+- Depuis binary ninja, nous voyons qu'une string est comparé: `Public speaking is very easy.`
+- Il suffit de l'entrer dans le programme
 
 ### Phase 2:
 - Voici le code de la phase 2
@@ -161,7 +161,7 @@ case 1:
 				explode_bomb()
 				noreturn;
 ```
-- Se qui donne:
+- Ce qui donne:
 ```
 1 b 214
 ```
@@ -170,6 +170,8 @@ case 1:
 - L'entrée est un nombre. Il est passer en paramatre de la fonction `func4` celle ci dois retourner a `55 (0x37)`.
 - Nous avons recoder `func4`
 - LE SCRIPTTTT !
+- Ce qui donne:
+9
 
 ### Phase 5
 La string est encoder en fonction de sa representation ascii, a l'aide du dictionnaire "isrveawhobpnutfg". On recode cette fonction en on la bruteforce grace a notre script.
