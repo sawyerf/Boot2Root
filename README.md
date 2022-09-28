@@ -12,9 +12,9 @@
 
 ## nmap
 <pre>
-$> nmap -A 192.168.1.96
+$> nmap -A boot2root.htb
 Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-27 01:11 CEST
-Nmap scan report for BornToSecHackMe (192.168.1.96)
+Nmap scan report for BornToSecHackMe (boot2root.htb)
 Host is up (0.064s latency).
 Not shown: 994 closed ports
 PORT    STATE SERVICE    VERSION
@@ -53,16 +53,16 @@ Nmap done: 1 IP address (1 host up) scanned in 27.42 seconds
 </pre>
 
 ## Html
-- `gobuster dir -u http://192.168.1.96/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -t 25 -x html`
+- `gobuster dir -u http://boot2root.htb/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -t 25 -x html`
 <pre>
 /index.html           (Status: 200) [Size: 1025]
 /forum                (Status: 403) [Size: 285] 
-/fonts                (Status: 301) [Size: 312] [--> http://192.168.1.96/fonts/]
+/fonts                (Status: 301) [Size: 312] [--> http://boot2root.htb/fonts/]
 </pre>
 
-- `gobuster dir -u https://192.168.1.96/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -t 25 -k`
+- `gobuster dir -u https://boot2root.htb/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -t 25 -k`
 <pre>
-/forum                (Status: 301) [Size: 314] [--> https://192.168.1.96/forum/]
-/webmail              (Status: 301) [Size: 316] [--> https://192.168.1.96/webmail/]
-/phpmyadmin           (Status: 301) [Size: 319] [--> https://192.168.1.96/phpmyadmin/]
+/forum                (Status: 301) [Size: 314] [--> https://boot2root.htb/forum/]
+/webmail              (Status: 301) [Size: 316] [--> https://boot2root.htb/webmail/]
+/phpmyadmin           (Status: 301) [Size: 319] [--> https://boot2root.htb/phpmyadmin/]
 </pre>

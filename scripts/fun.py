@@ -13,7 +13,7 @@ if len(sys.argv) == 2:
       
   for fun in sorted(result):
     for i in result[fun].split("\n"):
-      if 'useless' not in i and 'Got you' not in i and '//file' not in i and i != '' :
+      if 'Got you' not in i and '//file' not in i and i != '' :
         print(i)
 else:
   print("Usage \n python fun.py <PATH>")
