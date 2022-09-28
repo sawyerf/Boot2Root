@@ -63,8 +63,6 @@ $ cat /home/LOOKATME/password
 
 ## Lmezard FTP
 - On peut se [connecter au FTP](ftp://lmezard:G!@M6f4Eatau{sF"@boot2root.htb) grace a ce login (sur filezilla )
-
-```
 - On recupere les fichiers
 - README:
 ```
