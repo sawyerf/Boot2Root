@@ -87,10 +87,13 @@ Now SHA-256 it and submit%
 - On se connecte maintenant en SSH avec laurie en login et **330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4** en mot de passe.
 
 ```
-ssh laurie@192.168.1.97
+ssh laurie@boot2root.htb
 ```
 
 ## Laurie
+```
+scp laurie@boot2root.htb:/home/laurie/bomb .
+```
 
 - Un fichier README se trouve dans le home de laurie: 
 ```
@@ -107,45 +110,57 @@ o
 
 NO SPACE IN THE PASSWORD (password is case sensitive).
 ```
-- Un fichier bomb est aussi present.
+- Un executable bomb est aussi present.
 - Nous le decompilons avec binary ninja et commencons à le resoudre
 
 ### Phase 1:
-- Nous pouvons reporté la string depuis binary ninja: `Public speaking is very easy.`
+- Depuis binary ninja, nous voyons qu'une string est comparer: `Public speaking is very easy.`
+- Il suffit de l'entre dans le programme
 
 ### Phase 2:
-- Avec binary ninja on sait que le premier chiffre est 1
-- Pour les suivant on utilise gdb
-- On break a la comparaison et on print $eax se qui nous donne le nouveau chiffre
-<pre>
-$> gdb ./bomb 
-gdb-peda$ b *0x8048b7e
-Breakpoint 1 at 0x8048b7e
-gdb-peda$ r
-Starting program: /home/alarm/Boot2Root/scripts/bomb 
-Welcome this is my little bomb !!!! You have 6 stages with
-only one life good luck !! Have a nice day!
-Public speaking is very easy.
-Phase 1 defused. How about the next one?
-1 15 15 15 15 15
-gdb-peda$ x $eax
-0x2:    Cannot access memory at address 0x2
-</pre>
+- Voici le code de la phase 2
+```C
+int32_t phase_2(int32_t arg1) {
+  int listNumber[6];
+
+  read_six_numbers(arg1, listNumber)
+  if (*listNumber != 1)
+      explode_bomb()
+      noreturn
+  int32_t index = 1
+  int32_t result = 1
+  do
+      result = (index + 1) * result
+      if (listNumber[index] != result)
+          explode_bomb()
+          exit
+      index = index + 1
+  while (index s<= 5)
+  return result
+}
+```
+- On comprends donc que la suite de chiffre donne `1 2 6 24 120 720
 
 ### Phase 3 
 - Dans binary ninja on voit qu'il y a trois argument "%d %c %d"
-- Dans le code il suffit de lire les condition
+- Dans le code il suffit de lire les conditions
 - Le premier chiffre determine les deux argument d'apres dans les case
-- Pour 0
+- L'indice nous disait que le second argument etait `b`
+- Le case 1 possede `b` 
 ```
-case 0
-		ebx.b = 0x71 // le char
-		if (var_8 !=  0x309) // le int de fin
+case 1:
+		ebx.b = 'b' // le char
+		if (var_8 !=  214) // le int de fin
 				explode_bomb()
 				noreturn;
 ```
+- Se qui donne:
+```
+1 b 214
+```
 
 ### Phase 4
+- L'entree est un nombre. On a donc seulement bruteforce ce nombre.
 - LE SCRIPTTTT !
 
 ### Phase 5
