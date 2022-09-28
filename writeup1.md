@@ -139,7 +139,12 @@ int32_t phase_2(int32_t arg1) {
   return result
 }
 ```
-- On comprends donc que la suite de chiffre donne `1 2 6 24 120 720
+pour n >= 1
+U<sub>0</sub> = 1
+U<sub>n+1</sub> = U<sub>n</sub> * (n + 1)
+
+- On comprends donc que la suite de chiffre donne `1 2 6 24 120 720`
+
 
 ### Phase 3 
 - Dans binary ninja on voit qu'il y a trois argument "%d %c %d"
