@@ -21,7 +21,7 @@ for i in range(16806):
 				fi.write(nb + '\n')
 				fi.close()
 				cmd = os.popen('../bomb bite; cat bite').read()
-				if 'BOOM!!!' in cmd:
+				if 'BOOM!!!' not in cmd:
 						print('win: ' + nb)
 						exit()
 
